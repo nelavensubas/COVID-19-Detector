@@ -7,7 +7,10 @@
           div.hidden{
             display: none            
           }
-
+          div.jumbotron{
+            margin-bottom: 0;
+          }
+           
           label{
             cursor: pointer;
             background-color: rgb(255, 108, 97);
@@ -16,45 +19,88 @@
             border-radius: 5px;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
-            font-size: 25px
+            font-size: 25px;
+            margin-top: 10px;
           }
 
           label:hover {
             opacity: 0.5;
           }
+          #webcover{
+            background-image: url("https://cdn.pixabay.com/photo/2020/05/15/18/46/corona-5174671_960_720.jpg");
+            height: 100%;  
+            background-position: center;
+            background-size: cover;
+          }
+          #wMessage{
+            border-left: 8px solid red;
+            background-color: rgb(255, 255, 255);
+            margin-top: 100px;
+            color:red; 
+            margin-bottom: 50px;
+          }
+          #info{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            background-color: rgb(255, 108, 97);
+            color: white;
+            font-size: 22px;
+            text-align: center;
+            
+          }
+
+          #picture{
+            background-color:rgb(255, 152, 152); 
+            border: 5px solid rgb(255, 108, 97);     
+          }
+          #positive{
+            background-color:rgb(240, 88, 88); 
+            color:rgb(41, 3, 3); 
+            border-left: 8px solid red;
+          }
+          #negative{
+            background-color:rgba(110, 240, 138, 0.87); 
+            color:rgb(7, 36, 6); 
+            border-left: 8px solid green;
+          }
+          
         </style>
 
       </head>
     <body>
-
         <div class="jumbotron text-center">
             <h1>Covid-19 Detector</h1>
             <p>Powered by : Western AI</p>
         </div>
 
+     <div class="container-fluid text-center" id="webcover">
+      
+      <div class ="row"> 
+        <div class = "col text-left">
           <div class="container">
-            <div class = "row">
-              <h4 style="color:red;"><b>COVID-19 IS SERIOUS PLEASE STAY INDOORS AND LIMIT SOCIAL CONTACT</b></h4>
+            <div class = "row" id ="wMessage">
+              <h4><b> &nbsp; COVID-19 IS SERIOUS PLEASE STAY INDOORS AND LIMIT SOCIAL CONTACT</b></h4>
             </div>
           </div>
 
           <div class ="container pt-3">
             <div class ="row">
-                <p> Please upload a picture of an x-ray scan on the patients lungs. </p>
+              <div class="col-sm-8 pt-3" id="info">
+                <p> Please upload a picture of an x-ray scan on the patients lungs.</p>
+              </div>
+              <div class ="col-sm-1" style ="background-color:rgb(255, 255, 255);"></div>
+              <div class = "col-sm-3" style ="background-color:rgb(255, 255, 255)">
+                <input type="file"  accept="image/*" name="image" id="file"  onchange="uploadImg(event)" style="display: none;">
+                <label for="file">Upload Image</label>
+              </div>
             </div>
-            <div class = "row">
-              <input type="file"  accept="image/*" name="image" id="file"  onchange="uploadImg(event)" style="display: none;">
-            </div>
-            <div class = "row"> 
-              <label for="file">Upload Image</label>
-            </div>
-            <div class = "row">
+            <div class = "row" id ="picture">
               <img id="displayImg" width="1000"/>
             </div>     
           </div>
 
           <div class="container pt-5">
-            <h2>Uploading...</h2>
+            <h2 style ="color:rgb(0, 0, 0)">Uploading...</h2>
             <div class= "progress">
               <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" style="width:60%"></div>
             </div>
@@ -67,17 +113,24 @@
             };
           </script>
 
-        <div class ="container pt-3"> 
-          <div class ="hidden" id ="pResult">
-            <h1 style="background-color:rgb(240, 88, 88); color:rgb(41, 3, 3); border-left: 8px solid red;">&nbsp; Test Result: Positive </h1>
+          <div class ="container pt-3"> 
+            <div class ="hidden" id ="pResult">
+              <h1 id ="positive">&nbsp; Test Result: Positive </h1>
+            </div>
           </div>
-        </div>
 
-        <div class ="container pt-3">
-          <div class = "hidden" id ="nResult">
-            <h1 style="background-color:rgba(110, 240, 138, 0.87); color:rgb(7, 36, 6); border-left: 8px solid green;">&nbsp; Test Result: Negative</h1>
+          <div class ="container pt-3">
+            <div class = "hidden" id ="nResult">
+              <h1 id ="negative">&nbsp; Test Result: Negative</h1>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div class ="row">
+        
+      </div>
+    </div>
 
           <script type="text/javascript" src ="C:\Users\ricky\OneDrive\Desktop\University\Second Year\Western AI Project\COVID-19 Website\Covid-19SeftTest.js"></script>
     </body>
