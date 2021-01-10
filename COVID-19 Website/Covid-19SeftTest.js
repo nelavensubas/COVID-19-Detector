@@ -8,5 +8,9 @@ function displayResult(){
         document.getElementById("nResult").style.display = "block";
 }
 
-let el = document.getElementById("input-file-now");
+let el = document.getElementById("file");
 el.addEventListener('input', displayResult);
+
+
+
+
