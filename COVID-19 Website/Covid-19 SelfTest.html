@@ -13,9 +13,9 @@
            
           label{
             cursor: pointer;
-            background-color: rgb(255, 108, 97);
+            background-color:rgb(245, 96, 96);
             color: white;
-            border: 5px solid rgb(255, 108, 97);
+            border: 5px solid rgb(245, 96, 96);
             border-radius: 5px;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
@@ -27,7 +27,7 @@
             opacity: 0.5;
           }
           #webcover{
-            background-image: url("https://cdn.pixabay.com/photo/2020/05/15/18/46/corona-5174671_960_720.jpg");
+            background-image: url("file:///C:/Users/ricky/OneDrive/Desktop/University/Second%20Year/Western%20AI%20Project/CoronaVirusIMG.jpg");
             height: 100%;  
             background-position: center;
             background-size: cover;
@@ -42,7 +42,6 @@
           #info{
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
-            background-color: rgb(255, 108, 97);
             color: white;
             font-size: 22px;
             text-align: center;
@@ -88,19 +87,20 @@
               <div class="col-sm-8 pt-3" id="info">
                 <p> Please upload a picture of an x-ray scan on the patients lungs.</p>
               </div>
-              <div class ="col-sm-1" style ="background-color:rgb(255, 255, 255);"></div>
-              <div class = "col-sm-3" style ="background-color:rgb(255, 255, 255)">
+              <div class ="col-sm-1"></div>
+              <div class = "col-sm-3">
+                <form action = "/ans" method="post" enctype="multipart/form-data">
                 <input type="file"  accept="image/*" name="image" id="file"  onchange="uploadImg(event)" style="display: none;">
                 <label for="file">Upload Image</label>
               </div>
             </div>
             <div class = "row" id ="picture">
-              <img id="displayImg" width="1000"/>
+              <img id="displayImg" width="600"/>
             </div>     
           </div>
 
           <div class="container pt-5">
-            <h2 style ="color:rgb(0, 0, 0)">Uploading...</h2>
+            <h2 style ="color:rgb(255, 255, 255)">Uploading...</h2>
             <div class= "progress">
               <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" style="width:60%"></div>
             </div>
