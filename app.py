@@ -28,7 +28,7 @@ def get_model():
 
 @app.route('/')
 def home():
-    return render_template('Covid-19 SelfTest.html') # this renders the html template
+    return render_template('Covid-19_SelfTest.html') # this renders the html template
 '''
 @app.route("/predict", methods=["POST"])   #from https://youtu.be/XgzxH6G-ufA, uses jquery in html file for var
 def predict():
