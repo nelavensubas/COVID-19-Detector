@@ -1,16 +1,15 @@
 <html>
     <head>
-        <link rel ="stylesheet" type ="text/css" href ="C:\Users\ricky\OneDrive\Desktop\University\Second Year\Western AI Project\css\bootstrap.min.css">
-        <script type ="text/javascript" src ="C:\Users\ricky\OneDrive\Desktop\University\Second Year\Western AI Project\js\bootstrap.min.js"></script>
-        
+      <link rel ="stylesheet" type ="text/css" href ='/static/css/bootstrap.min.css'>
+      <script type ="text/javascript" src ="../static/js/bootstrap.min.js"></script>
         <style>
           div.hidden{
-            display: none            
+            display: none
           }
           div.jumbotron{
             margin-bottom: 0;
           }
-           
+
           label{
             cursor: pointer;
             background-color: rgb(255, 108, 97);
@@ -27,8 +26,8 @@
             opacity: 0.5;
           }
           #webcover{
-            background-image: url("https://cdn.pixabay.com/photo/2020/05/15/18/46/corona-5174671_960_720.jpg");
-            height: 100%;  
+            background-image: url("../static/CoronaVirusIMG.jpg");
+            height: 100%;
             background-position: center;
             background-size: cover;
           }
@@ -36,7 +35,7 @@
             border-left: 8px solid red;
             background-color: rgb(255, 255, 255);
             margin-top: 100px;
-            color:red; 
+            color:red;
             margin-bottom: 50px;
           }
           #info{
@@ -46,24 +45,24 @@
             color: white;
             font-size: 22px;
             text-align: center;
-            
+
           }
 
           #picture{
-            background-color:rgb(255, 152, 152); 
-            border: 5px solid rgb(255, 108, 97);     
+            background-color:rgb(255, 152, 152);
+            border: 5px solid rgb(255, 108, 97);
           }
           #positive{
-            background-color:rgb(240, 88, 88); 
-            color:rgb(41, 3, 3); 
+            background-color:rgb(240, 88, 88);
+            color:rgb(41, 3, 3);
             border-left: 8px solid red;
           }
           #negative{
-            background-color:rgba(110, 240, 138, 0.87); 
-            color:rgb(7, 36, 6); 
+            background-color:rgba(110, 240, 138, 0.87);
+            color:rgb(7, 36, 6);
             border-left: 8px solid green;
           }
-          
+
         </style>
 
       </head>
@@ -74,8 +73,8 @@
         </div>
 
      <div class="container-fluid text-center" id="webcover">
-      
-      <div class ="row"> 
+
+      <div class ="row">
         <div class = "col text-left">
           <div class="container">
             <div class = "row" id ="wMessage">
@@ -96,7 +95,7 @@
             </div>
             <div class = "row" id ="picture">
               <img id="displayImg" width="1000"/>
-            </div>     
+            </div>
           </div>
 
           <div class="container pt-5">
@@ -113,7 +112,7 @@
             };
           </script>
 
-          <div class ="container pt-3"> 
+          <div class ="container pt-3">
             <div class ="hidden" id ="pResult">
               <h1 id ="positive">&nbsp; Test Result: Positive </h1>
             </div>
@@ -128,10 +127,10 @@
       </div>
 
       <div class ="row">
-        
+
       </div>
     </div>
 
-          <script type="text/javascript" src ="C:\Users\ricky\OneDrive\Desktop\University\Second Year\Western AI Project\COVID-19 Website\Covid-19SeftTest.js"></script>
+    <script type="text/javascript" src ="../static/js/Covid-19SeftTest.js"></script>
     </body>
 </html>
