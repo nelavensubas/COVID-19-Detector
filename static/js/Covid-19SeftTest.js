@@ -1,10 +1,10 @@
 //Determined from Machine Learning
-let testResult = false;
-
+let testResult = 0;
+console.log('***in js')  //for debugging
 function displayResult(){
 
     let progressBar = document.getElementById("progBar");
-            document.getElementById("pBar").style.display = "block";
+            document.getElementById("pBar").style.display = "block"; 
 
             let i = 2
             function progress(){
@@ -16,7 +16,7 @@ function displayResult(){
             }
             progress();
 
-    if(testResult){
+    if(testResult == 1){
         document.getElementById("pResult").style.display = "block";
     }
     else{

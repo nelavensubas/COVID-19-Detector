@@ -20,17 +20,16 @@ import sys
 
 app = Flask(__name__,static_url_path='/static')
 
-
-def get_model():
-   global model
-   model = tf.keras.models.load_model("cnn_covid_x-ray_v1.h5")
-   print("* Model loaded!")
+global model
+model = tf.keras.models.load_model("cnn_covid_x-ray_v1.h5")
+print("* Model loaded!")
 
 
 @app.route('/')
 def main():
-    data = {'diagnosis': 0}
-    return render_template('Covid-19_SelfTest.html', data = data) # this renders the html template
+   print('***in main')
+   data = {'diagnosis': 0}
+   return render_template('Covid-19_SelfTest.html', data = data) # this renders the html template
 
 
 @app.route ('/ans' , methods = ['GET','POST'])
