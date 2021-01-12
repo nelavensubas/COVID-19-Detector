@@ -20,6 +20,7 @@ import sys
 
 app = Flask(__name__,static_url_path='/static')
 
+
 def get_model():
    global model
    model = tf.keras.models.load_model("cnn_covid_x-ray_v1.h5")
@@ -27,8 +28,58 @@ def get_model():
 
 
 @app.route('/')
-def home():
-    return render_template('Covid-19_SelfTest.html') # this renders the html template
+def main():
+    data = {'diagnosis': 0}
+    return render_template('Covid-19_SelfTest.html', data = data) # this renders the html template
+
+
+@app.route ('/ans' , methods = ['GET','POST'])
+def pred():
+  data = {'diagnosis': 0}
+  if request.method == 'POST':
+    print('yyyyy')
+    get_model()
+
+    file = request.files['image'] #requests file the file that was inputed in html
+    file.filename = "upload.jpeg" #makes file class attribute file name upload.jpeg
+    file_name = file.filename     #makes var file_name = "upload.jpeg"
+    base = os.path.dirname(__file__)  # gets directory to current file
+    filepath = os.path.join(base, 'uploads', file.filename) # idk
+    print(filepath)
+
+    image = tf.io.read_file('filepath')
+    image = tf.image.decode_png(image, channels=3)
+    image = tf.image.resize(image, [64, 64])
+    image = tf.expand_dims(image, axis=0)   # the shape would be (1, 64, 64, 3)
+    result = model.predict_classes(image)[0][0]
+
+    file.save(filepath)
+
+    data = {'diagnosis': 0}
+    result = predict()
+    if result == 0:
+      data['diagnosis'] = 0
+    else:
+      data['diagnosis'] = 1
+
+  return render_template('Covid-19_SelfTest.html', data=data)
+
+'''
+    data_gen= ImageDataGenerator(rescale=1/255).flow_from_directory(base,classes=["uploads"],class_mode=None, target_size=(100,100))
+    predi = (model.predict(data_gen))
+    message = str(round(predi[0][1]*100,2))+"%"
+    return render_template("products.html",likelyhood = message)
+'''
+if __name__ == '__main__':
+   app.run(debug = True)
+
+
+
+
+
+
+
+
 '''
 @app.route("/predict", methods=["POST"])   #from https://youtu.be/XgzxH6G-ufA, uses jquery in html file for var
 def predict():
@@ -69,39 +120,3 @@ def my_function():
         # because of the console.log() in the script.
         return jsonify(data)
 '''
-
-
-@app.route ('/ans' , methods = ['GET','POST'])
-def pred():
-    if request.method == 'POST':
-        get_model()
-
-        file = request.files['xray'] #requests files input in html
-        file.filename = "upload.jpeg" #makes file class attribute file name upload.jpeg
-        file_name = file.filename     #makes var file_name = "upload.jpeg"
-        base = os.path.dirname(__file__)  # gets directory to current file
-        filepath = os.path.join(base, 'uploads', file.filename) # idk
-        print(filepath)
-
-        image = tf.io.read_file('filepath')
-        image = tf.image.decode_png(image, channels=3)
-        image = tf.image.resize(image, [64, 64])
-        image = tf.expand_dims(image, axis=0)   # the shape would be (1, 64, 64, 3)
-        result = model.predict_classes(image)[0][0]
-
-        file.save(filepath)
-
-        result = predict()
-        if result == 0:
-          print("COVID-19")
-        else:
-          print("NORMAL")
-
-'''
-    data_gen= ImageDataGenerator(rescale=1/255).flow_from_directory(base,classes=["uploads"],class_mode=None, target_size=(100,100))
-    predi = (model.predict(data_gen))
-    message = str(round(predi[0][1]*100,2))+"%"
-    return render_template("products.html",likelyhood = message)
-'''
-if __name__ == 'name':
-    app.run(debug=true)

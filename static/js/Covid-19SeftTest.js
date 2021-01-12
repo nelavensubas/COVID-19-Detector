@@ -1,8 +1,8 @@
 //Determined from Machine Learning
-let testResult = false;
+
 
 function displayResult(){
-    if(testResult)
+    if(testResult == 1)
         document.getElementById("pResult").style.display = "block";
     else
         document.getElementById("nResult").style.display = "block";
