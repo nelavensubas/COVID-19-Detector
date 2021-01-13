@@ -103,7 +103,7 @@
               <div class = "col-sm-3">
 
 
-                <!--<  DON'T  TOUCH CODE   BELLOW ----  IN PROGRESS & FINALLY WORKING > -->
+                <!--< IN PROGRESS & FINALLY WORKING > -->
                 
                 <!--<form action = "/ans" method="post" enctype="multipart/form-data"> -->
                   <input id="image-selector" type="file" accept="image/*"> <!--file selector for user to browse for img-->
@@ -121,7 +121,7 @@
                         let dataURL = reader.result;                    //contains image data as url base 64 encoded string
                         $('#selected-image').attr("src", dataURL);     // makes image to be displayeed on page
                         base64Image = dataURL.replace("data:image/png;base64,",""); //get rid of metadataabout img and assign to base 64 img
-                        alert(base64Image);
+                        //alert(base64Image);
                         console.log(base64Image);   //load base64 img to console
                       }
                       reader.readAsDataURL($("#image-selector")[0].files[0]); // reads content of user selected file
