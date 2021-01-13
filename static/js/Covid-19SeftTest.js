@@ -1,5 +1,5 @@
 //Determined from Machine Learning
-let testResult = 0;
+//testResult = 0;
 console.log('***in js')  //for debugging
 function displayResult(){
 

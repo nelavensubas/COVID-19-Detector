@@ -101,9 +101,52 @@
               </div>
               <div class ="col-sm-1"></div>
               <div class = "col-sm-3">
-                <form action = "/ans" method="post" enctype="multipart/form-data">
-                <input type="file"  accept="image/*" name="image" id="file"  onchange="uploadImg(event)" style="display: none;">
-                <label for="file">Upload Image</label>
+
+
+                <!--<  DON'T  TOUCH CODE   BELLOW ----  IN PROGRESS & FINALLY WORKING > -->
+                
+                <!--<form action = "/ans" method="post" enctype="multipart/form-data"> -->
+                  <input id="image-selector" type="file" accept="image/*"> <!--file selector for user to browse for img-->
+                  <button id='predict-button'>Predict</button> <!--file selector-->
+                  <img id='selected-image' src=''/>  <!--image tag for image chosen by user -->
+                  <p style ="color:rgb(255, 0, 0)">COVID Test Result: <span id="covid-prediction"></span></p> 
+                  <!-- new for post testing bellow -->
+                  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                  <script>
+                  
+                    let base64Image;
+                    $("#image-selector").change(function() { 
+                      let reader = new FileReader();     //read content of file selected by user
+                      reader.onload = function(e) {      // handler for load event
+                        let dataURL = reader.result;                    //contains image data as url base 64 encoded string
+                        $('#selected-image').attr("src", dataURL);     // makes image to be displayeed on page
+                        base64Image = dataURL.replace("data:image/png;base64,",""); //get rid of metadataabout img and assign to base 64 img
+                        alert(base64Image);
+                        console.log(base64Image);   //load base64 img to console
+                      }
+                      reader.readAsDataURL($("#image-selector")[0].files[0]); // reads content of user selected file
+                    });
+
+                    $("#predict-button").click(function(event){ 
+                      let message = {
+                        image: base64Image     //make message a js object
+                      }
+                      console.log(message);
+                      $.post("/ans", JSON.stringify(message), function(response){  //converts message to json and recieves response from server 
+                        let output = response.prediction.covid;
+                        if (output == 1) {
+                          $("#covid-prediction").text('Negative')
+                        } else {
+                          $("#covid-prediction").text('Positive')
+                        }
+
+                        console.log(response);
+                      });
+                    });
+                  </script>
+
+
+
               </div>
             </div>
             <div class = "row" id ="picture">
@@ -173,10 +216,10 @@
         </footer>
       </div>
     </div>
-          <script type="text/javascript">
-            //let testResult = {{ data.diagnosis }}
-            console.log('***in js for var')
-            </script>
+          <!--<script type="text/javascript">
+            let testResult = {{data.diagnosis}};
+            console.log('***in js for var');
+            </script>-->
           <script type="text/javascript" src ="../static/js/Covid-19SeftTest.js"></script>
     </body>
 </html>
