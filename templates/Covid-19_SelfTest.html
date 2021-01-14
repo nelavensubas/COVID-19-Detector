@@ -97,7 +97,7 @@
           <div class ="container pt-3">
             <div class ="row">
               <div class="col-sm-8 pt-3" id="info">
-                <p> Please upload a picture of an x-ray scan on the patients lungs.</p>
+                <p> Please upload a .png picture of an x-ray scan on the patients lungs.</p>
               </div>
               <div class ="col-sm-1"></div>
               <div class = "col-sm-3">
@@ -105,7 +105,7 @@
                 <!--< IN PROGRESS & FINALLY WORKING > -->
                 
                 <!--<form action = "/ans" method="post" enctype="multipart/form-data"> -->
-                  <input id="image-selector" type="file" name="image" accept="image/*" hidden> <!--file selector for user to browse for img-->
+                  <input id="image-selector" type="file" name="image" accept="image/png" hidden> <!--file selector for user to browse for img-->
                   <label for="image-selector">Upload Image</label>
                   <button id='predict-button' style ="margin-bottom:10px;">Predict Result</button> <!--file selector-->
                   <img id='selected-image' src=''/>  <!--image tag for image chosen by user -->
@@ -127,14 +127,16 @@
                       }
                       reader.readAsDataURL($("#image-selector")[0].files[0]); // reads content of user selected file
                     });
-
+                    
                     $("#predict-button").click(function(event){ 
-                      let message = {
+                      document.getElementById("pResult").style.display = "none";
+                      document.getElementById("nResult").style.display = "none";
+                      let message = {                        
                         image: base64Image     //make message a js object
                       }
                       $.post("/ans", JSON.stringify(message), function(response){  //converts message to json and recieves response from server 
                         let output = response.prediction.covid;
-                        if (output == 1) {
+                        if (output == 0) {
                           document.getElementById("pResult").style.display = "block";
                         } else {
                           document.getElementById("nResult").style.display = "block";
@@ -181,25 +183,35 @@
               </p>
             </div>
             <div class = "col-sm-2" style ="margin-top: 35px;">
-              <p><b>Octavio Diaz</b> <br/> Email: <br/> 
-                <input type="image" id="image2" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+              <p><b>Octavio Diaz</b> <br/> Email: odiaz2@uwo.ca<br/> 
+                <a href ="https://www.linkedin.com/in/octavio-diaz2">
+                  <input type="image" id="image2" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+                </a>
               </p>
               <p><b>Nelaven Subaskaran</b> <br/> Email: <br/>
-                <input type="image" id="image3" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+                <a href ="https://www.linkedin.com/in/nelavensubas/">
+                  <input type="image" id="image3" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+                </a>              
               </p>
             </div>
             <div class = "col-sm-2" style ="margin-top: 35px;">
               <p><b>Hamzhayen Suventhiran</b> <br/> Email: <br/> 
-                <input type="image" id="image4" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+                <a href ="https://www.linkedin.com/in/hamzhayen-suventhiran/">
+                  <input type="image" id="image4" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+                </a>  
               </p>
               <p><b>Oleksiy Kovtonyuk</b> <br/> Email: <br/>
+                <a href ="https://www.linkedin.com/in/nelavensubas/">
                   <input type="image" id="image5" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
-              </p>
+                </a>
+                </p>
             </div>
             <div class = "col-sm-2" style ="margin-top: 35px;">
               <p><b>Abbas Hasan</b> <br/> Email: <br/> 
+                <a href ="https://www.linkedin.com/in/nelavensubas/">
                   <input type="image" id="image6" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
-              </p>
+                </a>
+                </p>
               <h6>Social Media</h6> 
               <p>
                 <a href ="https://www.facebook.com/">
