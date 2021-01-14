@@ -11,7 +11,7 @@
             margin-bottom: 0;
           }
            
-          label{
+          #predict-button, label{
             cursor: pointer;
             background-color:rgb(245, 96, 96);
             color: white;
@@ -23,7 +23,7 @@
             margin-top: 10px;
           }
 
-          label:hover {
+          label:hover, #predict-button:hover {
             opacity: 0.5;
           }
           input:hover {
@@ -65,7 +65,7 @@
             border: 5px solid rgb(255, 108, 97);     
           }
           #positive{
-            background-color:rgb(240, 88, 88); 
+            background-color:rgb(233, 113, 113); 
             color:rgb(41, 3, 3); 
             border-left: 8px solid red;
           }
@@ -102,27 +102,28 @@
               <div class ="col-sm-1"></div>
               <div class = "col-sm-3">
 
-
                 <!--< IN PROGRESS & FINALLY WORKING > -->
                 
                 <!--<form action = "/ans" method="post" enctype="multipart/form-data"> -->
-                  <input id="image-selector" type="file" accept="image/*"> <!--file selector for user to browse for img-->
-                  <button id='predict-button'>Predict</button> <!--file selector-->
+                  <input id="image-selector" type="file" name="image" accept="image/*" hidden> <!--file selector for user to browse for img-->
+                  <label for="image-selector">Upload Image</label>
+                  <button id='predict-button' style ="margin-bottom:10px;">Predict Result</button> <!--file selector-->
                   <img id='selected-image' src=''/>  <!--image tag for image chosen by user -->
-                  <p style ="color:rgb(255, 0, 0)">COVID Test Result: <span id="covid-prediction"></span></p> 
+                  <!--<p style ="color:rgb(255, 0, 0)">COVID Test Result: <span id="covid-prediction"></span></p> -->
                   <!-- new for post testing bellow -->
                   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
                   <script>
-                  
+
                     let base64Image;
                     $("#image-selector").change(function() { 
                       let reader = new FileReader();     //read content of file selected by user
                       reader.onload = function(e) {      // handler for load event
-                        let dataURL = reader.result;                    //contains image data as url base 64 encoded string
-                        $('#selected-image').attr("src", dataURL);     // makes image to be displayeed on page
+                        let dataURL = reader.result;              //contains image data as url base 64 encoded string
+                        let img = document.getElementById('displayImg');
+                        img.src = dataURL;
+                       // $('#selected-image').attr("src", dataURL);     // makes image to be displayeed on page
                         base64Image = dataURL.replace("data:image/png;base64,",""); //get rid of metadataabout img and assign to base 64 img
                         //alert(base64Image);
-                        console.log(base64Image);   //load base64 img to console
                       }
                       reader.readAsDataURL($("#image-selector")[0].files[0]); // reads content of user selected file
                     });
@@ -131,21 +132,16 @@
                       let message = {
                         image: base64Image     //make message a js object
                       }
-                      console.log(message);
                       $.post("/ans", JSON.stringify(message), function(response){  //converts message to json and recieves response from server 
                         let output = response.prediction.covid;
                         if (output == 1) {
-                          $("#covid-prediction").text('Negative')
+                          document.getElementById("pResult").style.display = "block";
                         } else {
-                          $("#covid-prediction").text('Positive')
+                          document.getElementById("nResult").style.display = "block";
                         }
-
-                        console.log(response);
                       });
                     });
                   </script>
-
-
 
               </div>
             </div>
@@ -153,22 +149,6 @@
               <img id="displayImg" width="600"/>
             </div>     
           </div>
-
-          <div class="container pt-5">
-            <div class ="hidden" id ="pBar">
-            <h2 style ="color:rgb(255, 255, 255)">Uploading...</h2>
-            <div class= "progress">
-              <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" id ="progBar" style="width:1%"></div>
-            </div>
-          </div>
-          </div>
-
-          <script>
-            var uploadImg = function(event) {
-              let img = document.getElementById('displayImg');
-              img.src = URL.createObjectURL(event.target.files[0]);
-            };
-          </script>
 
           <div class ="container pt-3"> 
             <div class ="hidden" id ="pResult">
@@ -183,7 +163,7 @@
           </div>
         </div>
 
-        <footer class="container-fluid text-left" id ="foot" style ="margin-top: 220px;">
+        <footer class="container-fluid text-left" id ="foot" style ="margin-top: 200px;">
           <div class ="row" style ="color:white; font-size:12px;">
             <div class = "col-sm-3 text-center">
               <p>
@@ -194,23 +174,43 @@
             <div class = "col-sm-3">
               <h4>Contact Information</h4>
               <p>Location: 1151 Richmond St <br/> London, ON</p>
-              <p><b>Rithik Kalra</b> <br/> Email: rkalra24@uwo.ca <br/> Phone: 647-472-4091</p>
+              <p><b>Rithik Kalra</b> <br/> Email: rkalra24@uwo.ca <br/>
+                  <a href ="https://www.linkedin.com/in/rithik-kalra-386a7019b/">
+                    <input type="image" id="image1" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+                  </a>
+              </p>
             </div>
             <div class = "col-sm-2" style ="margin-top: 35px;">
-              <p><b>Octavio Diaz</b> <br/> Email: <br/> Phone:</p>
-              <p><b>Nelaven Subaskaran</b> <br/> Email: <br/> Phone:</p>
+              <p><b>Octavio Diaz</b> <br/> Email: <br/> 
+                <input type="image" id="image2" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+              </p>
+              <p><b>Nelaven Subaskaran</b> <br/> Email: <br/>
+                <input type="image" id="image3" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+              </p>
             </div>
             <div class = "col-sm-2" style ="margin-top: 35px;">
-              <p><b>Hamzhayen Suventhiran</b> <br/> Email: <br/> Phone:</p>
-              <p><b>Oleksiy Kovtonyuk</b> <br/> Email: <br/> Phone:</p>
+              <p><b>Hamzhayen Suventhiran</b> <br/> Email: <br/> 
+                <input type="image" id="image4" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+              </p>
+              <p><b>Oleksiy Kovtonyuk</b> <br/> Email: <br/>
+                  <input type="image" id="image5" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+              </p>
             </div>
             <div class = "col-sm-2" style ="margin-top: 35px;">
-              <p><b>Abbas Hasan</b> <br/> Email: <br/> Phone:</p>
+              <p><b>Abbas Hasan</b> <br/> Email: <br/> 
+                  <input type="image" id="image6" alt="Login" width ="40" height ="40" src="../static/img/linkedIn%20icon.png">
+              </p>
               <h6>Social Media</h6> 
               <p>
-                <input type="image" id="image" alt="Login" width ="40" height ="40" src="../static/img/facebook%20icon.png">
-                <input type="image" id="image" alt="Login" width ="40" height ="40" src="./static/img/linkedIn%20icon.png">
-                <input type="image" id="image" alt="Login" width ="40" height ="40" src="./static/img/twitter%20icon.png">              </p>
+                <a href ="https://www.facebook.com/">
+                <input type="image" id="image7" alt="Login" width ="40" height ="40" src="../static/img/facebook%20icon.png">
+                </a>
+                <a href ="https://www.instagram.com/"></a>
+                <input type="image" id="image8" alt="Login" width ="38" height ="38" src="file:///C:/Users/ricky/OneDrive/Desktop/University/Second%20Year/Western%20AI%20Project/instagram%20icon.png">
+                </a>
+                <a href ="https://twitter.com/?lang=en"></a>
+                <input type="image" id="image9" alt="Login" width ="40" height ="40" src="../static/img/twitter%20icon.png"> </p>
+                </a> 
             </div>
           </div>
         </footer>
@@ -220,6 +220,5 @@
             let testResult = {{data.diagnosis}};
             console.log('***in js for var');
             </script>-->
-          <script type="text/javascript" src ="../static/js/Covid-19SeftTest.js"></script>
     </body>
 </html>
