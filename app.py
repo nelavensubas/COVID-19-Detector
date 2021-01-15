@@ -1,10 +1,8 @@
-from flask import Flask, render_template, url_for, jsonify
-import os
+from flask import Flask, render_template, jsonify
 import base64
 import io
 from PIL import Image
 import keras
-from keras import backend as K
 from keras. models import Sequential
 from keras. models import load_model
 from keras.preprocessing.image import ImageDataGenerator
