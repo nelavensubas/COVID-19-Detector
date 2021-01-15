@@ -1,1 +1,1 @@
-web: gunicorn <name of my main folder app>.wsgi --log-file -
+web: gunicorn mighty-eyrie-80156.wsgi --log-file -
