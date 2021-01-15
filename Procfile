@@ -1,1 +1,1 @@
-web: gunicorn mighty-eyrie-80156.wsgi --log-file -
+web: gunicorn frozen-oasis-75647.wsgi --log-file -
