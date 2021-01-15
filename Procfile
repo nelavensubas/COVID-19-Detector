@@ -1,1 +1,1 @@
-web: gunicorn frozen-oasis-75647.wsgi --log-file -
+web: gunicorn covid-19-predictor-425.wsgi --log-file -
