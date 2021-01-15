@@ -1,1 +1,1 @@
-web: gunicorn covid-19-predictor-425.wsgi --log-file -
+web: gunicorn app:app
