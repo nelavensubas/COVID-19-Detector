@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/29c8c7ba-cc94-4e88-995b-6b2b83574694/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/covid-xray-id-app",
+    "appService.deploySubpath": "."
+}

@@ -20,7 +20,7 @@ app = Flask(__name__,static_url_path='/static')
 
 
 global model
-model = tf.keras.models.load_model("cnn_covid_x-ray_v1.h5")
+model = tf.keras.models.load_model("/Users/odiaz/covid_proj/COVID-19-Predictor/cnn_covid_x-ray_v1.h5")
 print("* Model loaded!")
 
 
