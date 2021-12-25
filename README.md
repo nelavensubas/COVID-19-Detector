@@ -1,5 +1,19 @@
 # COVID-19 Detector
+Live: https://covid-19-xray-diagnose.herokuapp.com/
 
-# This web app uses the python Flask web app framework for back end
-# The front end of the web app was developed in html, CSS and uses the bootstrap framework to build the structure of the site
-# The front end is connected to the back end through the use of javascript and python
+A web application that uses machine learning to determine whether a user has tested positive or negative for COVID-19 based on a chest X-ray image.
+
+This was done by using Tensorflow to develop a Convolutional Neural Network in Python that classified images as "positive" or "negative" with a 97% accuracy. The Tensorflow model was trained using the COVID-19 Radiography Database dataset found here on Kaggle: https://www.kaggle.com/tawsifurrahman/covid19-radiography-database
+
+Frontend:
+- HTML
+- CSS
+- JavaScript
+- Bootstrap
+
+Backend:
+- Python
+- Flask
+
+## License
+[MIT](https://raw.githubusercontent.com/nelavensubas/COVID-19-Detector/main/LICENSE)
